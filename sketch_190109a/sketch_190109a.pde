@@ -46,7 +46,7 @@ void mouseReleased() {
       image(img, 0, 0);
       
       //intialize file
-      dateString = month() + "-" + day() + "-" + year() + ":" + hour() + ":"+ minute() + ":" + second();
+      dateString = month() + "_" + day() + "_" + year() + "_" + hour() + "_"+ minute() + "_" + second();
       data.add(millis() + " - Spirals Begun");
       out = createWriter("tremorlog"+ dateString + ".txt");
     }
