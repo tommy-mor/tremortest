@@ -5,8 +5,10 @@ var img2;
 var lineData;
 var spiralData;
 var timeOfStart;
+var lastIdx;
 
 function setup() {
+    frameRate(60);
 	background(255);
 	var c = createCanvas(window.innerWidth, window.innerHeight);
 	//createCanvas(1920, 1080);
@@ -41,7 +43,6 @@ function parse(file) {
 			i++;
 			x = data[i];
 		}
- 
 		return [spirals, lines];
 	} catch(error) {
 		console.log(error);
@@ -97,6 +98,7 @@ function mouseReleased() {
 			state = 3;
 			image(img2, 0, 0);
 			timeOfStart = millis();
+            lastIdx = 0;
 		}
 		break;
 	}
@@ -105,6 +107,7 @@ function mouseReleased() {
 			background(255);
 			state = 4;
 			timeOfStart = millis();
+            lastIdx = 0;
 		}
 		break;
 	}
@@ -143,10 +146,19 @@ function SpiralDraw() {
 	if (idx && idx != -1) {
 		[a, b, c, d] = spiralData[idx][1];
 		line(a, b, c, d);
+        if(idx > lastIdx) { //make sure it doesent do weird things when it resets
+            var i = 0;
+            while(lastIdx + i < idx) {
+                [a, b, c, d] = spiralData[lastIdx + i][1];
+                line(a, b, c, d);
+                i++;
+            }
+        }
 	}
 	if (idx == -1) {
 		text("SPIRAL REPLAY FINISHED", 0, 0, 400, 200)
 	}
+    lastIdx = idx;
 	fill(100,200,100);
 	noStroke();
 	rect(width-400, height-200, 400, 200);
@@ -162,10 +174,19 @@ function LineDraw() {
 	if (idx && idx != -1) {
 		[a, b, c, d] = lineData[idx][1];
 		line(a, b, c, d);
+        if(idx > lastIdx) { //make sure it doesent do weird things when it resets
+            var i = 0;
+            while(lastIdx + i < idx) {
+                [a, b, c, d] = lineData[lastIdx + i][1];
+                line(a, b, c, d);
+                i++;
+            }
+        }
 	}
 	if (idx == -1) {
 		text("LINE REPLAY FINISHED", 0, 0, 400, 200)
 	}
+    lastIdx = idx;
 	fill(100,200,100);
 	noStroke();
 	rect(width-400, height-200, 400, 200);
