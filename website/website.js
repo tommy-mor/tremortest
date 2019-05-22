@@ -19,6 +19,7 @@ function setup() {
 }
 
 function parse(file) {
+    console.log('parsing')
 	try {
 		var data = file.data.split(/\r?\n/);
 		if(data[0].search("Begun") == -1) {
@@ -43,6 +44,7 @@ function parse(file) {
 			i++;
 			x = data[i];
 		}
+        console.log('done parsing')
 		return [spirals, lines];
 	} catch(error) {
 		console.log(error);
@@ -139,6 +141,12 @@ function FirstDraw() {
 }
 
 function SpiralDraw() {
+    //fill(255,255,255); 
+    //rect(0,0,400,400);
+    //fill(0,0,0);
+    //text(frameRate(),0,0,100,100)
+    //todo make this better
+
 	var a,b,c,d;
 	stroke(0);
 	var timeOfFrame = millis() - timeOfStart;
