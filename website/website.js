@@ -150,7 +150,8 @@ function SpiralDraw() {
 	var a,b,c,d;
 	stroke(0);
 	var timeOfFrame = millis() - timeOfStart;
-	var idx = spiralDataTimes.findIndex(function(x) { return x > timeOfFrame})
+    // div by 1000 because data is in microseconds, and we are using miliseconds
+	var idx = spiralDataTimes.findIndex(function(x) { return x/1000 > timeOfFrame})
 	if (idx && idx != -1) {
 		[a, b, c, d, p] = spiralData[idx][1];
         strokeWeight(p/800);
@@ -180,7 +181,8 @@ function LineDraw() {
 	var a,b,c,d;
 	stroke(0);
 	var timeOfFrame = millis() - timeOfStart;
-	var idx = lineDataTimes.findIndex(function(x) { return x > timeOfFrame})
+    // div by 1000 because data is in microseconds, and we are using miliseconds
+	var idx = lineDataTimes.findIndex(function(x) { return x/1000 > timeOfFrame})
 	if (idx && idx != -1) {
 		[a, b, c, d, p] = lineData[idx][1];
         strokeWeight(p/800);
