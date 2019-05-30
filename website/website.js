@@ -152,8 +152,11 @@ function SpiralDraw() {
 	var timeOfFrame = millis() - timeOfStart;
     // div by 1000 because data is in microseconds, and we are using miliseconds
 	var idx = spiralDataTimes.findIndex(function(x) { return x/1000 >= timeOfFrame})
-    idx--;
 	if (idx && idx != -1) {
+
+        if(idx != 0) {
+            idx--;
+        }
 		[a, b, c, d, p] = spiralData[idx][1];
         strokeWeight(p/800);
 		line(a, b, c, d);
@@ -183,12 +186,15 @@ function LineDraw() {
 	stroke(0);
 	var timeOfFrame = millis() - timeOfStart;
     // div by 1000 because data is in microseconds, and we are using miliseconds
-	var idx = lineDataTimes.findIndex(function(x) { return x/1000 >= timeOfFrame});
-    idx--;
-	if (idx && idx != -1) {
-		[a, b, c, d, p] = lineData[idx][1];
+    var idx = lineDataTimes.findIndex(function(x) { return x/1000 >= timeOfFrame});
+    if (idx && idx != -1) {
+
+        if(idx != 0) {
+            idx--;
+        }
+        [a, b, c, d, p] = lineData[idx][1];
         strokeWeight(p/800);
-		line(a, b, c, d);
+        line(a, b, c, d);
         if(idx > lastIdx) { //make sure it doesent do weird things when it resets
             var i = 0;
             while(lastIdx + i < idx) {
@@ -198,18 +204,18 @@ function LineDraw() {
                 i++;
             }
         }
-	}
-	if (idx == -1) {
-		text("LINE REPLAY FINISHED", 0, 0, 400, 200)
-	}
+    }
+    if (idx == -1) {
+        text("LINE REPLAY FINISHED", 0, 0, 400, 200)
+    }
     lastIdx = idx;
-	fill(100,200,100);
-	noStroke();
-	rect(width-400, height-200, 400, 200);
-	fill(0);
-	text("DONE WITH REPLAY", width-400, height-200, 400, 200);
+    fill(100,200,100);
+    noStroke();
+    rect(width-400, height-200, 400, 200);
+    fill(0);
+    text("DONE WITH REPLAY", width-400, height-200, 400, 200);
 }
 
 function ThanksDraw() {
-	text("THANK YOU FOR PLAYING, click to continue", width/2, height/2);
+    text("THANK YOU FOR PLAYING, click to continue", width/2, height/2);
 }
