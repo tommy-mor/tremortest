@@ -153,13 +153,13 @@ function SpiralDraw() {
 	var idx = spiralDataTimes.findIndex(function(x) { return x > timeOfFrame})
 	if (idx && idx != -1) {
 		[a, b, c, d, p] = spiralData[idx][1];
-        strokeWeight(p);
+        strokeWeight(p/800);
 		line(a, b, c, d);
         if(idx > lastIdx) { //make sure it doesent do weird things when it resets
             var i = 0;
             while(lastIdx + i < idx) {
                 [a, b, c, d, p] = spiralData[lastIdx + i][1];
-                strokeWeight(p);
+                strokeWeight(p/800);
                 line(a, b, c, d);
                 i++;
             }
@@ -183,13 +183,13 @@ function LineDraw() {
 	var idx = lineDataTimes.findIndex(function(x) { return x > timeOfFrame})
 	if (idx && idx != -1) {
 		[a, b, c, d, p] = lineData[idx][1];
-        strokeWeight(p);
+        strokeWeight(p/800);
 		line(a, b, c, d);
         if(idx > lastIdx) { //make sure it doesent do weird things when it resets
             var i = 0;
             while(lastIdx + i < idx) {
                 [a, b, c, d, p] = lineData[lastIdx + i][1];
-                strokeWeight(p);
+                strokeWeight(p / 800);
                 line(a, b, c, d);
                 i++;
             }
