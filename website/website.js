@@ -171,7 +171,11 @@ function SpiralDraw() {
         }
 	}
 	if (idx == -1) {
-		text("SPIRAL REPLAY FINISHED", 0, 0, 400, 200)
+        fill(255);
+        noStroke();
+        rect(0,0,400,30);
+        fill(0);
+		text("SPIRAL REPLAY FINISHED", 0, 0, 400, 200);
 	}
     lastIdx = idx;
 	fill(100,200,100);
@@ -206,6 +210,10 @@ function LineDraw() {
         }
     }
     if (idx == -1) {
+        fill(255);
+        noStroke();
+        rect(0,0,400,30);
+        fill(0);
         text("LINE REPLAY FINISHED", 0, 0, 400, 200)
     }
     lastIdx = idx;
